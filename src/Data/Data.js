@@ -1,11 +1,11 @@
 
-import {UilHome ,UilUserPlus, UilUsersAlt ,UilClipboardNotes, UilFileShieldAlt ,UilFileGraph} from "@iconscout/react-unicons"
+import {UilHome ,UilUserPlus, UilUsersAlt ,UilClipboardNotes, UilFileShieldAlt,UilBill ,UilFileGraph ,UilPaperclip ,UilPoundCircle ,UilProcessor} from "@iconscout/react-unicons"
 
 
 export const SidebarData =[
     {        
         icon:UilHome,
-        heading: "Home" 
+        heading: "Dashboard" 
     },
     {       
         icon:UilUserPlus,
@@ -23,6 +23,11 @@ export const SidebarData =[
         icon:UilFileShieldAlt,
         heading:"Documents" 
     },
+    {        
+        icon:UilBill,
+        heading:"Payment" 
+    },
+    
     {
         icon:UilFileGraph,
         heading:"Reports"
@@ -31,20 +36,20 @@ export const SidebarData =[
 ]
 export const PalaviProjects =[
     {
-        icon:UilUserPlus,
+        icon:UilPaperclip,
         heading:"OLD AGE HOME"
     },
     {
-        icon:UilUserPlus,
+        icon:UilPoundCircle,
         heading:"CSR FUND"
     },
     {
         icon:UilUserPlus,
-        heading:"Design System"
+        heading:"Bachat Gat"
     },
      {
-        icon:UilUserPlus,
-        heading:"Wireframes "
+        icon:UilProcessor,
+        heading:"Other Activity "
     }
     
         

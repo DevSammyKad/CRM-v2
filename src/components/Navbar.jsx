@@ -1,12 +1,15 @@
 // Navbar.js
 import React from 'react';
+import Logo from '../assets/Logo.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-white text-blue-500 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white font-bold text-lg">Your Logo</div>
-        {/* Add other navbar elements here */}
+    <nav className="navbar bg-white p-4 border-b border-border-stroke">
+      <div className="w-full mx-auto flex ">
+        <div className="p-4 flex">
+          <img src={Logo} alt="" className="mx-4" />
+          <h1 className="font-bold text-xl"> PALAVI</h1>
+        </div>
       </div>
     </nav>
   );

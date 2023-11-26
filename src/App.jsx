@@ -1,6 +1,7 @@
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
           <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
-            {/* Your main content goes here */}
+            <Dashboard />
           </main>
         </div>
       </div>
