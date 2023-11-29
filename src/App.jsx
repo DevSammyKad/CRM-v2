@@ -2,6 +2,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
+import Clients from './pages/Clients';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
           <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
-            <Dashboard />
+            {/* <Dashboard /> */}
+            <Clients />
           </main>
         </div>
       </div>
