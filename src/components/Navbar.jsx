@@ -26,7 +26,6 @@ const Navbar = () => {
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
                   d="M1 1h14M1 6h14M1 11h7"
                 />{' '}
               </svg>
@@ -60,7 +59,7 @@ const Navbar = () => {
                 alt="FlowBite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+                PALAVI
               </span>
             </a>
           </div>

@@ -1,10 +1,36 @@
 import React from 'react';
+
+import NewClientForm from '../components/NewClientForm';
 import { OverViewCards } from '../Data/Dashboard';
+import { useState } from 'react';
 
 const Dashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  <NewClientForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+
   return (
-    <div className="bg-bg-light-gray">
-      <div className=" grid xl:grid-cols-4 gap-10 sm:grid-cols-2 px-3 mt-10">
+    <div>
+      <div className="my-5 w-full border border-border-stroke rounded-lg p-5 bg-white flex justify-between items-center">
+        <div>
+          <h1 className="font-semibold text-xl my-3">Dashboard Overview</h1>
+          <p className="text-lg text-gray font-light font-sans tracking-wide leading-4">
+            Welcome to Your Counseling Services Dashboard
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-bg-purple py-4 px-6 rounded-lg text-text-purple font-semibold active:scale-90 "
+          >
+            Add New Client
+          </button>
+          <button className="bg-light-green py-4 px-6 rounded-lg text-dark-green font-semibold active:scale-90 ">
+            Download File
+          </button>
+        </div>
+      </div>
+      <div className=" grid xl:grid-cols-4 gap-10 sm:grid-cols-2 px-3 mt-24">
         {OverViewCards.map((item, index) => {
           return (
             <div
@@ -27,6 +53,7 @@ const Dashboard = () => {
           );
         })}
       </div>
+      <NewClientForm />
     </div>
   );
 };

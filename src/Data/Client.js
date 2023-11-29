@@ -33,3 +33,41 @@ export const ClientTabs = [
     }
 
 ]
+export const Transaction =[
+    { 
+        Id:"suresh",
+        Amount:"200",
+        Status:"Paid", 
+        Date:"12 Jan 2023"
+      },
+      {
+        Id:"suresh",
+        Amount:"150",
+        Status:"Due",
+        Date:"15 Jan 2023"
+      },
+      {
+        Id:"suresh",
+        Amount:"120", 
+        Status:"Paid",
+        Date:"18 Jan 2023"
+      },
+      {
+        Id:"mahesh",
+        Amount:"300",
+        Status:"Due", 
+        Date:"20 Jan 2023" 
+      },
+      {
+        Id:"churesh",  
+        Amount:"250",
+        Status:"Paid",
+        Date:"25 Jan 2023"
+      }, 
+      {
+        Id:"naresh",
+        Amount:"175", 
+        Status:"Due",
+        Date:"28 Jan 2023" 
+      }
+]
