@@ -5,7 +5,7 @@ import { PalaviProjects, SidebarData, SidebarFooter } from '../Data/Data';
 const Sidebar = () => {
   return (
     <div className="menu flex flex-col justify-evenly h-full w-72 pl-1 bg-white pt-2 border-r border-border-stroke">
-      <p className="pl-5 text-gray-light leading-4	text-sm font-semibold p-1">
+      <p className="pl-5 text-gray-light leading-2	text-sm font-semibold p-1">
         Main
       </p>
 
@@ -13,10 +13,10 @@ const Sidebar = () => {
         return (
           <div
             key={index}
-            className="flex mx  items-center cursor-pointer text-gray leading-4	text-base font-normal p-4 py-3 ease-in-out hover:text-text-purple hover:bg-bg-menu "
+            className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 py-3 ease-in-out hover:text-text-purple hover:bg-bg-menu "
           >
             <item.icon className="mx-3 w-{25px} h-{25px}" />
-            <span className="text-lg font-semibold"> {item.heading}</span>
+            <span className="text-sm font-semibold"> {item.heading}</span>
           </div>
         );
       })}
@@ -35,7 +35,7 @@ const Sidebar = () => {
             className="flex mx  items-center cursor-pointer text-gray leading-4	text-base font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
           >
             <item.icon className="mx-3 w-{25px} h-{25px}" />
-            <span className="text-lg font-semibold"> {item.heading}</span>
+            <span className="text-sm font-semibold"> {item.heading}</span>
           </div>
         );
       })}
@@ -45,10 +45,10 @@ const Sidebar = () => {
         return (
           <div
             key={index}
-            className="flex mx  items-center cursor-pointer text-gray leading-4	text-base font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
+            className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
           >
             <item.icon className="mx-3 w-{25px} h-{25px}" />
-            <span className="text-lg font-semibold"> {item.heading}</span>
+            <span className="text-sm font-semibold"> {item.heading}</span>
           </div>
         );
       })}

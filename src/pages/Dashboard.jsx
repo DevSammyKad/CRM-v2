@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import NewClientForm from '../components/NewClientForm';
 import { OverViewCards } from '../Data/Dashboard';
-import { useState } from 'react';
 
 const Dashboard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setshowmodal] = useState(false);
 
-  <NewClientForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
-
+  const closeModal = () => setshowmodal(false);
   return (
     <div>
       <div className="my-5 w-full border border-border-stroke rounded-lg p-5 bg-white flex justify-between items-center">
         <div>
-          <h1 className="font-semibold text-xl my-3">Dashboard Overview</h1>
-          <p className="text-lg text-gray font-light font-sans tracking-wide leading-4">
+          <h1 className="font-semibold text-lg my-3">Dashboard Overview</h1>
+          <p className="text-sm text-gray font-light font-sans tracking-wide leading-4">
             Welcome to Your Counseling Services Dashboard
           </p>
         </div>
         <div className="flex gap-3">
           <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-bg-purple py-4 px-6 rounded-lg text-text-purple font-semibold active:scale-90 "
+            className="bg-bg-purple py-3 px-4 rounded-lg text-text-purple font-semibold text-sm active:scale-90 "
+            onClick={() => setshowmodal(true)}
           >
             Add New Client
           </button>
-          <button className="bg-light-green py-4 px-6 rounded-lg text-dark-green font-semibold active:scale-90 ">
+          {showModal && <NewClientForm closeModal={closeModal} />}
+
+          <button className="bg-light-green py-3 px-4 rounded-lg text-dark-green font-semibold text-sm active:scale-90 ">
             Download File
           </button>
         </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
           );
         })}
       </div>
-      <NewClientForm />
+      {/* <NewClientForm /> */}
     </div>
   );
 };

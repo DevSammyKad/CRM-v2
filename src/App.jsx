@@ -13,8 +13,8 @@ function App() {
         <div className="flex flex-1 overflow-hidden">
           <Sidebar />
           <main className="flex-1 overflow-x-hidden overflow-y-auto bg-bg-light-gray p-4">
-            <Dashboard />
-            {/* <Clients /> */}
+            {/* <Dashboard /> */}
+            <Clients />
             {/* <Payment /> */}
           </main>
         </div>

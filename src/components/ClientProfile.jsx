@@ -5,104 +5,164 @@ import { ClientTabs } from '../Data/Client';
 const ClientProfile = () => {
   return (
     <div>
-      {ClientProfileData.map((item, index) => (
-        <div
-          className="max-w-md px-6 py-4 bg-white  rounded-xl overflow-hidden shadow-lg "
-          key={index}
-        >
-          <div className="flex flex-col justify-between ">
-            <div className="flex justify-center my-4">
-              <img
-                src="https://www.commontools.org/articles/images/76/1.svg"
-                alt=""
-                className="w-40 h-40 rounded-full overflow-hidden "
-              />
+      <div className="bg-bg-light-gray">
+        <div className="grid grid-cols-12 gap-4  my-4">
+          <div className=" col-span-6 bg-white rounded-xl border border-border-stroke p-6">
+            {ClientProfileData.map((item, index) => {
+              <div
+                className="max-w-md px-6 py-4 bg-white  rounded-xl overflow-hidden shadow-lg "
+                key={index}
+              >
+                <p> {item.Address}</p>
+              </div>;
+            })}
+          </div>
+          <div className=" col-span-3 bg-white rounded-xl border border-border-stroke p-6">
+            <div className="flex justify-between items-center">
+              <h1>Notes</h1>
+              <p>See all</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold ">ID : </h1>
-              <p>{item.ID}</p>
+            <textarea
+              name="notes"
+              id="notes"
+              cols="30"
+              rows="5"
+              placeholder="take all notes here "
+            ></textarea>
+            <button className="py-2 px-4 rounded-lg bg-bg-purple font-semibold">
+              Take Notes
+            </button>
+            <div>
+              <h2>Note-1</h2>
+              <p>Note One is available</p>
             </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold ">Name : </h1>
-              <p>{item.Name}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2  my-2">
-              <h1 className="mr-2 text-gray font-semibold ">Email : </h1>
-              <p>{item.Email}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold ">
-                Another Number :
-              </h1>
-              <p>{item.AnotherNumber}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Age : </h1>
-              <p>{item.age}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Date Of Birth : </h1>
-              <p>{item.DateOfBirth}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Gender : </h1>
-              <p>{item.Gender}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Service : </h1>
-              <p>{item.Service}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Job Profile : </h1>
-              <p>{item.JobProfile}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">
-                AdharCard / Pancard :
-              </h1>
-              <p>{item.adharCardPancard}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Referrals : </h1>
-              <p>{item.Referrals}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Opponents : </h1>
-              <p>{item.Opponents}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Onboard Date : </h1>
-              <p>{item.OnboardDate}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Current Status :</h1>
-              <p>{item.CurrentStatus}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 my-2">
-              <h1 className="mr-2 text-gray font-semibold">Payment Status :</h1>
-              <p>{item.PaymentStatus}</p>
-            </div>
-            <hr className="w-3/4 mx-auto border my-3 bg-gray-light" />
-            <div className="text-center my-3">
-              <a href="tel:8459324821">Call Now :</a>
+          </div>
+          <div className=" col-span-3 bg-white rounded-xl border border-border-stroke p-6">
+            <div className="flex justify-end items-center">
+              <div>
+                <h1 className="text-sm flex font-semibold">File / Document </h1>
+              </div>
+              <div>
+                <input type="file" />
+              </div>
             </div>
           </div>
         </div>
-      ))}
+        <div className="bg-bg-light-gray">
+          <div className="grid grid-cols-12 gap-4 my-4 ">
+            <div className=" col-span-9 bg-white rounded-xl border border-border-stroke p-6">
+              <div className=" flex justify-between items-center mb-6 border-b border-border-stroke dark:border-gray-700">
+                <div className="">
+                  <ul
+                    className="flex text-sm font-medium text-center bg-bg-purple rounded-xl"
+                    id="default-tab"
+                    data-tabs-toggle="#default-tab-content"
+                    role="tablist"
+                  >
+                    <li className="me-2 " role="presentation">
+                      <button
+                        className="inline-block  py-2 px-4 my-2 mx-4 rounded-lg  active:bg-white active:text-blue-600"
+                        id="profile-tab"
+                        data-tabs-target="#profile"
+                        type="button"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="true"
+                      >
+                        Upcoming Appointment
+                      </button>
+                    </li>
+                    <li className="me-2" role="presentation">
+                      <button
+                        className="inline-block py-2 px-4 my-2 mx-4 rounded-lg  active:bg-white active:text-blue-600 hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="dashboard-tab"
+                        data-tabs-target="#dashboard"
+                        type="button"
+                        role="tab"
+                        aria-controls="dashboard"
+                        aria-selected="false"
+                      >
+                        Post Appointment
+                      </button>
+                    </li>
+                    <li className="me-2" role="presentation">
+                      <button
+                        className="inline-block py-2 px-4 my-2 mx-4 rounded-lg  active:bg-white active:text-blue-600 hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="settings-tab"
+                        data-tabs-target="#settings"
+                        type="button"
+                        role="tab"
+                        aria-controls="settings"
+                        aria-selected="false"
+                      >
+                        All
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <button className="bg-bg-purple text-sm font-semibold px-4 py-2 rounded-lg">
+                    {' '}
+                    Add Appointment
+                  </button>
+                </div>
+              </div>
+
+              <div id="default-tab-content">
+                <div
+                  className=" p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+                  id="profile"
+                  role="tabpanel"
+                  aria-labelledby="profile-tab"
+                >
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    This is some placeholder content the{' '}
+                    <strong className="font-medium text-gray-800 dark:text-white">
+                      Profile tab's associated content
+                    </strong>
+                    . Clicking another tab will toggle the visibility of this
+                    one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                  </p>
+                </div>
+                <div
+                  className=" p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+                  id="dashboard"
+                  role="tabpanel"
+                  aria-labelledby="dashboard-tab"
+                >
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    This is some placeholder content the{' '}
+                    <strong className="font-medium text-gray-800 dark:text-white">
+                      Dashboard tab's associated content
+                    </strong>
+                    . Clicking another tab will toggle the visibility of this
+                    one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                  </p>
+                </div>
+                <div
+                  className=" p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+                  id="settings"
+                  role="tabpanel"
+                  aria-labelledby="settings-tab"
+                >
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    This is some placeholder content the{' '}
+                    <strong className="font-medium text-gray-800 dark:text-white">
+                      Settings tab's associated content
+                    </strong>
+                    . Clicking another tab will toggle the visibility of this
+                    one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className=" col-span-3 bg-white rounded-xl border border-border-stroke p-6"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
