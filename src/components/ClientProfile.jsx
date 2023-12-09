@@ -42,16 +42,13 @@ const ClientProfile = () => {
               <div>
                 <h1 className="text-sm flex font-semibold">File / Document </h1>
               </div>
-              <div>
-                <input type="file" />
-              </div>
             </div>
           </div>
         </div>
         <div className="bg-bg-light-gray">
-          <div className="grid grid-cols-12 gap-4 my-4 ">
-            <div className=" col-span-9 bg-white rounded-xl border border-border-stroke p-6">
-              <div className=" flex justify-between items-center mb-6 border-b border-border-stroke dark:border-gray-700">
+          <div className="grid grid-cols-4 gap-4 my-4 ">
+            <div className=" col-span-3 bg-white rounded-xl border border-border-stroke p-6">
+              <div className=" flex justify-between items-center mb-6  dark:border-gray-700">
                 <div className="">
                   <ul
                     className="flex text-sm font-medium text-center bg-bg-purple rounded-xl"
@@ -59,9 +56,9 @@ const ClientProfile = () => {
                     data-tabs-toggle="#default-tab-content"
                     role="tablist"
                   >
-                    <li className="me-2 " role="presentation">
+                    <li className="me-2" role="presentation">
                       <button
-                        className="inline-block  py-2 px-4 my-2 mx-4 rounded-lg  active:bg-white active:text-blue-600"
+                        className="inline-block  py-2 px-4 my-2 mx-4 rounded-lg  bg-white text-blue-600"
                         id="profile-tab"
                         data-tabs-target="#profile"
                         type="button"
@@ -159,7 +156,12 @@ const ClientProfile = () => {
                 </div>
               </div>
             </div>
-            <div className=" col-span-3 bg-white rounded-xl border border-border-stroke p-6"></div>
+            <div className=" col-span-1 bg-white rounded-xl border border-border-stroke p-6">
+              <div>
+                <h1>Payment</h1>
+                <div></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

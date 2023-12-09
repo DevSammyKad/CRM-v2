@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { PalaviProjects, SidebarData, SidebarFooter } from '../Data/Data';
 
@@ -11,13 +12,12 @@ const Sidebar = () => {
 
       {SidebarData.map((item, index) => {
         return (
-          <div
-            key={index}
-            className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 py-3 ease-in-out hover:text-text-purple hover:bg-bg-menu "
-          >
-            <item.icon className="mx-3 w-{25px} h-{25px}" />
-            <span className="text-sm font-semibold"> {item.heading}</span>
-          </div>
+          <Link to={item.path} key={index}>
+            <div className="flex mx items-center cursor-pointer text-gray leading-4 text-base font-normal p-4  ease-in-out hover:text-text-purple hover:bg-bg-menu">
+              <item.icon className="mx-3 w-25 h-25" />
+              <span className="text-sm font-semibold">{item.heading}</span>
+            </div>
+          </Link>
         );
       })}
 
@@ -43,13 +43,12 @@ const Sidebar = () => {
       {/* Setting */}
       {SidebarFooter.map((item, index) => {
         return (
-          <div
-            key={index}
-            className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
-          >
-            <item.icon className="mx-3 w-{25px} h-{25px}" />
-            <span className="text-sm font-semibold"> {item.heading}</span>
-          </div>
+          <Link to={item.path} key={index}>
+            <div className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu">
+              <item.icon className="mx-3 w-{25px} h-{25px}" />
+              <span className="text-sm font-semibold"> {item.heading}</span>
+            </div>
+          </Link>
         );
       })}
     </div>

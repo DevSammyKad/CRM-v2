@@ -24,7 +24,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="first_name"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg  focus:ring-blue-500  focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Fist Name"
                   required
                 />
@@ -39,7 +39,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="last_name"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Last Name"
                   required
                 />
@@ -56,7 +56,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="address"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Address"
                   required
                 />
@@ -71,7 +71,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="area_second"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Area"
                   required
                 />
@@ -101,7 +101,7 @@ const NewClientForm = ({ closeModal }) => {
                     type="text"
                     id="phone_number"
                     aria-describedby="helper-text-explanation"
-                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     placeholder="123-456-7890"
                     required
@@ -118,7 +118,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="email"
                   id="email"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="sam@email.com"
                   required
                 />
@@ -135,7 +135,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="job_profile"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Job Profile"
                   required
                 />
@@ -150,7 +150,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="number"
                   id="age"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Age"
                   required
                 />
@@ -165,7 +165,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="reference_name"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Reference name"
                   required
                 />
@@ -185,7 +185,7 @@ const NewClientForm = ({ closeModal }) => {
               </label>
               <select
                 id="problem"
-                className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               >
                 <option value="MarrigeProblems" selected>
                   Marrige Problems
@@ -195,6 +195,7 @@ const NewClientForm = ({ closeModal }) => {
                 <option value="FamilyCounselling">Family Counselling</option>
                 <option value="OldAgeHome">Old Age Home</option>
                 <option value="BachatGat">Bachat Gat</option>
+                <option value="harassment">Harassment</option>
               </select>
             </div>
             <div className="grid grid-cols-2 gap-5 my-4">
@@ -208,7 +209,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="text"
                   id="opponent_name"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="Opponent Name"
                   required
                 />
@@ -223,7 +224,7 @@ const NewClientForm = ({ closeModal }) => {
                 <input
                   type="tel"
                   id=" Opponent_contact"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   placeholder="+ 91"
                   required
                 />
