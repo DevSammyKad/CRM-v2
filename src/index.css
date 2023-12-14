@@ -14,5 +14,13 @@
 }
 
 /* index.css */
-@import '~ag-grid-community/styles/ag-grid.css';
-@import '~ag-grid-community/styles/ag-theme-alpine.css'; /* Choose a theme, 'ag-theme-alpine' is just an example */
+/* @import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-alpine.css'; */
+
+/* Choose a theme, 'ag-theme-alpine' is just an example */
+
+/* .ag-theme-alpine {
+  --ag-row-border-style: dashed;
+  --ag-row-border-width: 1px;
+  --ag-row-border-color: rgb(150, 150, 200);
+} */

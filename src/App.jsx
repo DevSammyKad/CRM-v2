@@ -1,5 +1,3 @@
-import './App.css';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -18,7 +16,7 @@ function App() {
     <Router>
       <div className="flex h-screen">
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Navbar />
+          {/* <Navbar /> */}
           <div className="flex flex-1 overflow-hidden">
             <Sidebar />
             <main className="flex-1 overflow-x-hidden overflow-y-auto bg-bg-light-gray p-4">
