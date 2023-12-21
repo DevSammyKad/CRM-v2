@@ -24,3 +24,39 @@
   --ag-row-border-width: 1px;
   --ag-row-border-color: rgb(150, 150, 200);
 } */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #invoice-container,
+  #invoice-container * {
+    visibility: visible;
+    size: 4A landscape;
+  }
+
+  #invoice-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  button {
+    display: none;
+  }
+  input {
+    border: none;
+  }
+  .invoice-container span {
+    background: transparent;
+    text-align: start;
+  }
+  table .tboday {
+    border: 1px dashed red;
+    border-radius: 40px;
+  }
+  tr {
+    text-align: start;
+    border: none;
+  }
+}
