@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CsrFunds = () => {
-  return <div>CsrFunds</div>;
+  return <div>Csr Funds</div>;
 };
 
 export default CsrFunds;

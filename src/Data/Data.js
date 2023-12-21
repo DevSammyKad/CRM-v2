@@ -53,18 +53,22 @@ export const SidebarData = [
 ];
 export const PalaviProjects = [
   {
+    path: '/oldAgeHome',
     icon: UilPaperclip,
     heading: 'OLD AGE HOME',
   },
   {
+    path: '/csrfunds',
     icon: UilPoundCircle,
     heading: 'CSR FUND',
   },
   {
+    path: '/bachatGat',
     icon: UilUserPlus,
     heading: 'Bachat Gat',
   },
   {
+    path: '/otheractivity',
     icon: UilProcessor,
     heading: 'Other Activity ',
   },
