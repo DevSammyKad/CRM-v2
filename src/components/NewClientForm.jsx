@@ -1,7 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import SvgCloseCircle from '../icons/CloseCircle';
 
 const NewClientForm = ({ closeModal }) => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const NewClientForm = ({ closeModal }) => {
     phone_number: '',
     email: '',
     job_profile: '',
+    annualincome: '',
     age: '',
     reference_name: '',
     opp_first_name: '',
@@ -23,19 +25,43 @@ const NewClientForm = ({ closeModal }) => {
     opp_phone_number: '',
     opp_email: '',
     opp_job_profile: '',
+    opp_annualincome: '',
     opp_age: '',
+    onboardingdate: '',
     problem: 'MarrigeProblems', // default value
+    relation: '',
     summary: '',
   });
 
   // Function to update form data on input change
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    // If the input is the date field, handle it separately
+    if (id === 'onboardingdate') {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().split('T')[0];
+      setFormData((prevData) => ({
+        ...prevData,
+        onboardingdate: formattedDate,
+      }));
+    } else {
+      // For other inputs, update the state as usual
+      setFormData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value,
+      onboardingdate: formattedDate,
     }));
-  };
+  }, []);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -47,6 +73,7 @@ const NewClientForm = ({ closeModal }) => {
       );
       toast.success('Form submitted successfully!');
       closeModal();
+
       // You can now access the form data in the formData state
       console.log('Form Data:', JSON.stringify(formData, null, 2));
 
@@ -59,17 +86,21 @@ const NewClientForm = ({ closeModal }) => {
   };
 
   return (
-    <div className="div">
+    <div>
       <div className="modal">
         <div className="grid gap-6 my-5 max-w-6xl mx-auto border border-border-stroke rounded-2xl p-5 bg-slate-100">
           <form action="post" onSubmit={handleSubmit} className="my-5 mx-10">
-            <input type="text" />
             {/* ############### Personal Details  ########## */}
             <div className="border border-border-stroke p-6 rounded-2xl my-10 bg-white">
-              <p className="text-sm text-red-500 font-semibold pb-2">
-                Please be sure to fully and accurately complete all sections of
-                the attached form. *
-              </p>
+              <div className="flex justify-between items-center">
+                <p className="text-sm text-red-500 font-semibold pb-2">
+                  Please be sure to fully and accurately complete all sections
+                  of the attached form. *
+                </p>
+                <button onClick={closeModal}>
+                  <SvgCloseCircle className="w-8 h-8" />
+                </button>
+              </div>
               <h1 className="font-semibold text-lg text-blue-500">
                 Personal Details
               </h1>
@@ -189,7 +220,6 @@ const NewClientForm = ({ closeModal }) => {
                       id="phone_number"
                       aria-describedby="helper-text-explanation"
                       className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                       placeholder="123-456-7890"
                       // required
                     />
@@ -213,7 +243,7 @@ const NewClientForm = ({ closeModal }) => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-5 my-4">
+              <div className="grid grid-cols-4 gap-5 my-4">
                 <div className="col-1">
                   <label
                     htmlFor="job_profile"
@@ -228,6 +258,23 @@ const NewClientForm = ({ closeModal }) => {
                     onChange={handleChange}
                     className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                     placeholder="Job Profile"
+                    // required
+                  />
+                </div>
+                <div className="col-1">
+                  <label
+                    htmlFor="annualincome"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Annual Income
+                  </label>
+                  <input
+                    type="number"
+                    id="annualincome"
+                    value={formData.annualincome}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="Annual Income"
                     // required
                   />
                 </div>
@@ -389,7 +436,6 @@ const NewClientForm = ({ closeModal }) => {
                       id="opp_phone_number"
                       aria-describedby="helper-text-explanation"
                       className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                       placeholder="123-456-7890"
                       // required
                     />
@@ -433,6 +479,23 @@ const NewClientForm = ({ closeModal }) => {
                 </div>
                 <div className="col-1">
                   <label
+                    htmlFor="opp_annualincome"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Annual Income
+                  </label>
+                  <input
+                    type="number"
+                    id="opp_annualincome"
+                    value={formData.opp_annualincome}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="Annual Income"
+                    // required
+                  />
+                </div>
+                <div className="col-1">
+                  <label
                     htmlFor="opp_age"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
@@ -455,29 +518,65 @@ const NewClientForm = ({ closeModal }) => {
               <h1 className="font-semibold text-lg text-blue-500 mb-4">
                 More Details
               </h1>
-              <div>
-                <label
-                  htmlFor="problem"
-                  className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Select an Problem or Other?
-                </label>
-                <select
-                  id="problem"
-                  value={formData.problem}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                >
-                  <option value="MarrigeProblems" defaultValue>
-                    Marrige Problems
-                  </option>
-                  <option value="PropertyFraud">Property Fraud</option>
-                  <option value="DivorceCase">Divorce Case</option>
-                  <option value="FamilyCounselling">Family Counselling</option>
-                  <option value="OldAgeHome">Old Age Home</option>
-                  <option value="BachatGat">Bachat Gat</option>
-                  <option value="harassment">Harassment</option>
-                </select>
+              <div className="grid grid-cols-3 gap-5 my-4">
+                <div className="col-span-1">
+                  <label
+                    htmlFor="onboardingdate"
+                    className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Onboarding Date
+                  </label>
+                  <input
+                    id="onboardingdate"
+                    type="date"
+                    value={formData.onboardingdate}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  />
+                </div>
+                <div className="col-span-1">
+                  <label
+                    htmlFor="problem"
+                    className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Select an Problem or Other?
+                  </label>
+                  <select
+                    id="problem"
+                    value={formData.problem}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  >
+                    <option value="MarrigeProblems" defaultValue>
+                      Marrige Problems
+                    </option>
+                    <option value="PropertyFraud">Property Fraud</option>
+                    <option value="DivorceCase">Divorce Case</option>
+                    <option value="FamilyCounselling">
+                      Family Counselling
+                    </option>
+                    <option value="OldAgeHome">Old Age Home</option>
+                    <option value="BachatGat">Bachat Gat</option>
+                    <option value="harassment">Harassment</option>
+                  </select>
+                </div>
+                <div className="col-span-1">
+                  <label
+                    htmlFor="relation"
+                    className="block mb-2  mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Relation
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.relation}
+                    onChange={handleChange}
+                    id="relation"
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="Relation"
+                    // required
+                  />
+                </div>
               </div>
               <label
                 htmlFor="summary"
@@ -552,7 +651,7 @@ const NewClientForm = ({ closeModal }) => {
           </form>
         </div>
       </div>
-      <Toaster />
+      <Toaster className="fixed inset-0" />
     </div>
   );
 };

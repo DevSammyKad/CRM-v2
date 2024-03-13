@@ -14,6 +14,7 @@ import OldAgeHome from './pages/oldAgeHome';
 import CsrFunds from './pages/CsrFunds';
 import OtherActivity from './pages/OtherActivity';
 import BachatGat from './pages/BachatGat';
+import { Breadcrumbs } from '@mui/material';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
           <Navbar />
           <div className="flex flex-1 overflow-hidden">
             <Sidebar />
-            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-bg-light-gray p-4">
+            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-4">
+              <Breadcrumbs />
               <Routes>
                 <Route index element={<Dashboard />} />
                 <Route path="/dashboard" element={<Dashboard />} />

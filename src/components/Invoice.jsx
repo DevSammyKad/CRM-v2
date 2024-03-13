@@ -1,14 +1,80 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UilTrashAlt, UilPlusCircle } from '@iconscout/react-unicons';
 import { useState, useRef } from 'react';
+import SvgCloseCircle from '../icons/CloseCircle';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
-const Invoice = () => {
+const Invoice = ({ closeModal }) => {
+  const [formData, setFormData] = useState({
+    invoiceId: '',
+    Issued: '',
+    DueDate: '',
+    compName: '',
+    compAddress: '',
+    compSecAddress: '',
+    phoneNumber: '',
+    itemId: '',
+    itemPrice: '',
+    quantity: '',
+    gst: '',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/create-receipt',
+        formData
+      );
+      toast.success('Invoice Data store succesfully');
+      console.log('Form Data:', JSON.stringify(formData, null, 2));
+    } catch (error) {
+      console.error('error to submit Data', error);
+      toast.error(' Please retry  ');
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+
+    if (id === 'date') {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().split('T')[0];
+      setFormData((prevData) => ({
+        ...prevData,
+        date: formattedDate,
+      }));
+    } else {
+      // For other inputs, update the state as usual
+      setFormData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    }
+  };
   const [invoiceItems, setInvoiceItems] = useState([
     { sr: 1, item: '', price: '', quantity: '', total: '' },
   ]);
 
   const invoiceContainerRef = useRef(null);
 
+  const [issuedDate, setissuedDate] = useState('');
+
+  useEffect(() => {
+    // Function to get the current date and format it
+    const getCurrentDate = () => {
+      const currentDate = new Date();
+      const formattedDate =
+        currentDate.getFullYear() +
+        '-' +
+        String(currentDate.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(currentDate.getDate()).padStart(2, '0');
+      return formattedDate;
+    };
+    setissuedDate(getCurrentDate());
+  }, []);
   const addRow = () => {
     setInvoiceItems((prevItems) => [
       ...prevItems,
@@ -23,7 +89,15 @@ const Invoice = () => {
   };
 
   const deleteRow = (sr) => {
-    setInvoiceItems((prevItems) => prevItems.filter((item) => item.sr !== sr));
+    setInvoiceItems((prevItems) => {
+      const updatedItems = prevItems.filter((item) => item.sr !== sr);
+
+      // Update the sr values based on the new index
+      return updatedItems.map((item, index) => ({
+        ...item,
+        sr: index + 1,
+      }));
+    });
   };
 
   const handleInputChange = (sr, field, value) => {
@@ -76,7 +150,6 @@ const Invoice = () => {
 
       // Check if the inputs are valid numbers
       if (!isNaN(numericPrice) && !isNaN(numericQuantity)) {
-        // Calculate the total for each item and add it to the subtotal
         subtotal += numericPrice * numericQuantity;
       }
     });
@@ -137,28 +210,36 @@ const Invoice = () => {
   return (
     <div>
       <div>
-        <h1>Invoice </h1>
-        <div className="flex justify-between mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg">
-          <div>
-            <h1>Invoice ID:</h1>
-          </div>
-          <div className="flex gap-5">
-            <button
-              onClick={() => printInvoice('invoice-container')}
-              className="py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600"
-            >
-              Print Invoice
-            </button>
-            <button className="py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600">
-              Send Invoice
-            </button>
-          </div>
-        </div>
         <div
           id="invoice-container"
           ref={invoiceContainerRef}
-          className=" invoice-container flex flex-col justify-between mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg"
+          className="invoice-container flex flex-col justify-between mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg"
         >
+          <header className="flex justify-between ">
+            <div>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                Palavi Samajik Sanstha
+              </h1>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                palaviSanstha.org@gmail.com
+              </h1>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                91+8459324821
+              </h1>
+            </div>
+            <div>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                Flat No 1, Sagar Apartment, Rakshewadi Rd,
+              </h1>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                Rajgurunagar ,Pune
+              </h1>
+              <h1 className="text-gray leading-7 tracking-wide font-semibold ">
+                GST NO
+              </h1>
+            </div>
+          </header>
+          <hr className="my-10 print:my-2" />
           <div className="flex flex-row justify-between gap-4 w-full my-4 ">
             <div className="flex  gap-4">
               <span className="bg-gray-light py-2 px-4 rounded-md font-semibold">
@@ -169,22 +250,10 @@ const Invoice = () => {
                 type="number"
                 placeholder="Enter Invoice Number"
                 id="invoiceId"
+                value={formData.invoiceId}
+                onChange={handleChange}
               />
             </div>
-            <div className="flex gap-4">
-              <span className="bg-gray-light py-2 px-4 rounded-md font-semibold">
-                Company Name{' '}
-              </span>
-              <input
-                className="border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
-                type="Text"
-                placeholder="Enter Company Name"
-                id="CompanyName"
-              />
-            </div>
-          </div>
-          <hr className="text-slate-500 border-dashed my-4 w-10/12 mx-auto" />
-          <div className="flex justify-start gap-14 w-full my-4">
             <div className="flex  gap-4">
               <span className=" w-[100px] text-center  bg-gray-light py-2 px-4 rounded-md font-semibold">
                 Issued{' '}
@@ -194,45 +263,66 @@ const Invoice = () => {
                 type="date"
                 placeholder="Issued Date"
                 id="Issued"
+                value={issuedDate}
+                onChange={(e) => setissuedDate(e.target.value)}
               />
             </div>
             <div className="flex gap-4">
               <span className="  text-center bg-gray-light py-2 px-4 rounded-md font-semibold">
-                Phone No{' '}
+                Due{' '}
               </span>
               <input
                 className="border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
-                type="Text"
-                placeholder="Enter Phone Number"
-                id="phoneNumber"
-                maxLength={10}
-                value={phoneNumber}
-                onChange={handlePhoneInputChange}
+                type="date"
+                placeholder="Enter Due Date"
+                id="DueDate"
+                value={formData.DueDate}
+                onChange={handleChange}
               />
             </div>
           </div>
+          <hr className="text-slate-500 border-dashed my-4 w-10/12 mx-auto print:hidden print:my-0" />
+
           <div className="flex flex-row justify-start gap-14 w-full my-4">
             <div className="flex  gap-4">
-              <span className="w-[100px] text-center bg-gray-light py-2 px-4 rounded-md font-semibold">
-                From{' '}
+              <span className="w-[100px] h-[43px] text-center bg-gray-light py-2 px-4 rounded-md font-semibold">
+                Bill To{' '}
               </span>
-              <input
-                className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
-                type="text"
-                placeholder="Enter Details"
-                id="from"
-              />
-            </div>
-            <div className="flex gap-4">
-              <span className="w-[100px] text-center bg-gray-light py-2 px-4 rounded-md font-semibold">
-                To{' '}
-              </span>
-              <input
-                className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
-                type="Text"
-                placeholder="Enter Detail"
-                id="to"
-              />
+              <div className="flex flex-col">
+                <input
+                  className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
+                  type="text"
+                  placeholder="Enter Company Name"
+                  id="compName"
+                  value={formData.compName}
+                  onChange={handleChange}
+                />
+                <input
+                  className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
+                  type="text"
+                  placeholder="Enter Address"
+                  id="compAddress"
+                  value={formData.compAddress}
+                  onChange={handleChange}
+                />
+                <input
+                  className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
+                  type="text"
+                  placeholder="Enter Second Address"
+                  id="compSecAddress"
+                  value={formData.compSecAddress}
+                  onChange={handleChange}
+                />
+                <input
+                  className="w-[250px] border-border-stroke border rounded-lg py-2 px-4 outline-none focus:border-indigo-400"
+                  type="text"
+                  placeholder="Enter Phone Number"
+                  id="phoneNumber"
+                  maxLength={10}
+                  value={phoneNumber}
+                  onChange={handlePhoneInputChange}
+                />
+              </div>
             </div>
           </div>
           <div className="mt-10">
@@ -260,6 +350,7 @@ const Invoice = () => {
                           className="py-2 px-4 border border-border-stroke focus:border-indigo-400 outline-none rounded-md my-2"
                           type="text"
                           placeholder="Item"
+                          id="itemId"
                           value={item.item}
                           onChange={(e) =>
                             handleInputChange(item.sr, 'item', e.target.value)
@@ -270,6 +361,7 @@ const Invoice = () => {
                         <input
                           className="py-2 px-4 border border-border-stroke focus:border-indigo-400 outline-none rounded-md "
                           type="number"
+                          id="itemPrice"
                           placeholder="Price"
                           value={item.price}
                           onChange={(e) =>
@@ -281,6 +373,7 @@ const Invoice = () => {
                         <input
                           className="py-2 px-4 border border-border-stroke focus:border-indigo-400 outline-none rounded-md "
                           type="number"
+                          id="quantity"
                           placeholder="Quantity"
                           value={item.quantity}
                           onChange={(e) =>
@@ -318,7 +411,7 @@ const Invoice = () => {
               <select
                 className=" print:hidden w-72 border-border-stroke border py-2 px-4 rounded-lg outline-none"
                 name="gst"
-                id=""
+                id="gst"
                 placeholder="Please Select GST"
                 onChange={handleGSTchange}
                 value={selectedGST}
@@ -347,7 +440,50 @@ const Invoice = () => {
               </div>
             </div>
           </div>
+          <hr className="mt-10 border border-border-stroke" />
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="mt-20 text-lg font-semibold">
+                Thanks for the business.
+              </h1>
+              <h1 className="text-gray mt-5 underline">Terms & Conditions</h1>
+              <h1 className="text-gray mt-2 ">
+                Please pay within 15 days of receiving this invoice.
+              </h1>
+            </div>
+          </div>
         </div>
+        <div className=" flex justify-between mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg">
+          <div>
+            <h1>Invoice ID:</h1>
+            <h2>hiiis</h2>
+          </div>
+          <div className="flex gap-5">
+            <button
+              className=" flex items-center gap-3 py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600"
+              onClick={closeModal}
+            >
+              Go Back
+              <SvgCloseCircle />
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600"
+            >
+              Save Invoice
+            </button>
+            <button
+              onClick={() => printInvoice('invoice-container')}
+              className="py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600"
+            >
+              Print Invoice
+            </button>
+            <button className="py-2 px-4 rounded-md b border border-blue-500 text-sm font-semibold hover:text-white hover:bg-blue-600">
+              Send Invoice
+            </button>
+          </div>
+        </div>
+        <Toaster />
       </div>
     </div>
   );

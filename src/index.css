@@ -13,17 +13,23 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* index.css */
-/* @import '~ag-grid-community/styles/ag-grid.css';
-@import '~ag-grid-community/styles/ag-theme-alpine.css'; */
+h4 {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: #151924;
+}
+h5 {
+  color: #848588;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
 
-/* Choose a theme, 'ag-theme-alpine' is just an example */
-
-/* .ag-theme-alpine {
-  --ag-row-border-style: dashed;
-  --ag-row-border-width: 1px;
-  --ag-row-border-color: rgb(150, 150, 200);
-} */
 @media print {
   body * {
     visibility: hidden;
@@ -33,6 +39,7 @@
   #invoice-container * {
     visibility: visible;
     size: 4A landscape;
+    font-size: 8px;
   }
 
   #invoice-container {

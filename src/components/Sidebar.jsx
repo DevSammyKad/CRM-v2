@@ -45,8 +45,8 @@ const Sidebar = () => {
       {SidebarData.map((item, index) => (
         <Link to={item.path} key={index}>
           <div
-            data-tooltip-content={item.heading} // Set the tooltip content
-            data-for={`tooltip-${item.heading}`} // Unique identifier for each tooltip
+            data-tooltip-content={item.heading}
+            data-for={`tooltip-${item.heading}`}
             data-place="right"
             className="flex mx items-center cursor-pointer text-gray leading-4 text-base font-normal p-4  ease-in-out hover:text-text-purple hover:bg-bg-menu"
           >
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 isExpanded
                   ? 'flex  opacity-100 transition-transform delay-1000'
                   : 'hidden opacity-0'
-              } font-sans font-semibold `}
+              }  font-semibold `}
             >
               {item.heading}
             </span>

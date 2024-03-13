@@ -65,7 +65,7 @@ export const PalaviProjects = [
   {
     path: '/bachatGat',
     icon: UilUserPlus,
-    heading: 'Bachat Gat',
+    heading: 'BACHAT GAT',
   },
   {
     path: '/otheractivity',
