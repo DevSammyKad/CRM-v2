@@ -13,7 +13,7 @@ module.exports = {
         white: '#ffffff',
         'gray-dark': '#273444',
         'gray-light': '#d3dce6',
-        gray: '#787486',
+        // gray: '#787486',
         'border-stroke': '#DBDBDB',
       },
       linearGradientColors: {

@@ -9,7 +9,7 @@ const SvgSearchStatus = (props) => (
     {...props}
   >
     <path
-      stroke="#292D32"
+      stroke="gray"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

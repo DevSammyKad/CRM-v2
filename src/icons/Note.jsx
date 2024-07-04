@@ -12,7 +12,7 @@ const SvgNote = (props) => (
       d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13"
       stroke="#292D32"
       strokeWidth="1.5"
-      strokeminecap="round"
+      strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 const SvgDropbox = (props) => (
   <svg
     width="1em"
@@ -35,7 +35,7 @@ const SvgDropbox = (props) => (
         <rect
           width={18}
           height={15.3281}
-          fill="white"
+          fill="black"
           transform="translate(0 1)"
         />
       </clipPath>

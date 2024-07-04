@@ -6,13 +6,22 @@ import Cutegirl from '../images/Cutegirl.png';
 import cartoon from '../images/cartoon.png';
 import VisitorsBars from '../components/VisitorsBars';
 import FinancialInsights from '../components/FinancialInsights';
+import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 
 const Dashboard = () => {
   const [showModal, setshowmodal] = useState(false);
 
   const closeModal = () => setshowmodal(false);
+
+  const { login, register } = useKindeAuth();
   return (
     <div className="">
+      <button onClick={register} type="button">
+        Register
+      </button>
+      <button onClick={login} type="button">
+        Log In
+      </button>
       <div className=" my-8 w-full border border-border-stroke rounded-lg p-5 bg-white lg:flex justify-between items-center">
         <div className="flex justify-center items-center gap-5">
           <div>
@@ -45,15 +54,15 @@ const Dashboard = () => {
           return (
             <div
               key={index}
-              className="flex  flex-col items-center justify-between cursor-pointer text-gray-dark p-4  bg-white hover:shadow-lg rounded-2xl "
+              className="flex  flex-col items-center justify-between cursor-pointer text-gray-dark p-4 bg-white hover:shadow-lg rounded-2xl "
             >
               <div className="flex justify-between items-center gap-10">
                 <div className={`${item.color} w-2 h-28 rounded-lg`}></div>
                 <div className="flex flex-col gap-4">
-                  <h1 className="font-semibold text-gray text-lg">
+                  <h1 className="font-semibold  text-lg">{item.count}</h1>
+                  <span className="font-semibold  text-gray text-base">
                     {item.heading}
-                  </h1>
-                  <span className="font-semibold text-base">{item.count}</span>
+                  </span>
                 </div>
                 <div className="relative">
                   <item.icon

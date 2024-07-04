@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@iconscout/react-unicons": "^2.0.2",
+    "@kinde-oss/kinde-auth-react": "^3.0.28",
     "@mui/icons-material": "^5.15.3",
     "@mui/material": "^5.15.3",
     "apexcharts": "^3.45.2",
@@ -22,9 +23,13 @@
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.2.0",
     "react-router-dom": "^6.20.1",
     "react-tooltip": "^5.25.0",
-    "tailwindcss-gradients": "^3.0.0"
+    "tailwindcss-gradients": "^3.0.0",
+    "use-debounce": "^10.0.0",
+    "xlsx": "^0.18.5",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

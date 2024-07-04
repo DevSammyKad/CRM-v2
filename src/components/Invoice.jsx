@@ -208,8 +208,8 @@ const Invoice = ({ closeModal }) => {
   console.log(phoneNumber);
 
   return (
-    <div>
-      <div>
+    <div className="fixed inset-0 overflow-auto bg-white bg-opacity-5  backdrop-blur-sm  flex items-center justify-center z-10">
+      <div className="max-w-full max-h-full overflow-auto">
         <div
           id="invoice-container"
           ref={invoiceContainerRef}
@@ -453,10 +453,9 @@ const Invoice = ({ closeModal }) => {
             </div>
           </div>
         </div>
-        <div className=" flex justify-between mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg">
+        <div className=" flex justify-between items-center mt-6 border border-border-stroke rounded-lg p-8 bg-white shadow-lg">
           <div>
             <h1>Invoice ID:</h1>
-            <h2>hiiis</h2>
           </div>
           <div className="flex gap-5">
             <button

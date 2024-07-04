@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SvgCloseCircle from '../icons/CloseCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import SvgInstagram from '../icons/Instagram';
 
 const NewleadForm = ({ closeModal }) => {
   const [formData, setFormData] = useState({
@@ -69,8 +70,8 @@ const NewleadForm = ({ closeModal }) => {
 
   return (
     <div>
-      <div className="  flex justify-center items-center">
-        <div className="bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 inset-0 z-10  border border-border-stroke shadow-xl rounded-lg w-[1000px] h-[90%] overflow-y-auto p-10 flex flex-col mt-1">
+      <div className=" fixed  inset-0 z-10 bg-black bg-opacity-5 backdrop-blur-sm  flex items-center justify-center">
+        <div className="bg-white border border-border-stroke shadow-xl rounded-lg w-[1000px] h-[90%] overflow-y-auto p-10 flex flex-col mt-1">
           <div className="flex justify-between items-center">
             <h1 className="my-2 font-semibold text-xl text-blue-500 ">
               Add New Lead
@@ -204,28 +205,28 @@ const NewleadForm = ({ closeModal }) => {
                   />
                   <label>Other</label>
                 </div>
+                <div className="w-full">
+                  <label
+                    htmlFor="date"
+                    className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    required
+                    value={formData.date}
+                    onChange={handleChange}
+                    placeholder="Contact Number"
+                    className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  />
+                </div>
               </div>
             </div>
 
             {/* // //// second Div for selection */}
             <div className="flex w-full gap-7">
-              <div className="w-full">
-                <label
-                  htmlFor="date"
-                  className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Date
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  required
-                  value={formData.date}
-                  onChange={handleChange}
-                  placeholder="Contact Number"
-                  className="bg-gray-50 border border-border-stroke text-gray-900 text-sm rounded-lg focus:outline-none  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                />
-              </div>
               <div className="w-full">
                 <label
                   className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
@@ -247,7 +248,8 @@ const NewleadForm = ({ closeModal }) => {
                   <option value="Divorce Case">Divorce Case</option>
                   <option value="Family Counselling">Family Counselling</option>
                   <option value="Old Age Home">Old Age Home</option>
-                  <option value="Bachat-Gat">Bachat Gat</option>
+                  <option value="Bachat Gat">Bachat Gat</option>
+                  <option value="Domestic Violence">Domestic Violence</option>
                   <option value="Harassment">Harassment</option>
                   <option value="Other">Other</option>
                 </select>
@@ -269,7 +271,14 @@ const NewleadForm = ({ closeModal }) => {
                   <option value="MarrigeProblems" defaultValue>
                     Facebook
                   </option>
-                  <option value="Instagram">Instagram </option>
+                  <option value="Instagram">
+                    <img
+                      src={SvgInstagram || <SvgInstagram />}
+                      alt=""
+                      className="w-20"
+                    />
+                    Instagram{' '}
+                  </option>
                   <option value="Whatsapp">Whatsapp</option>
                   <option value="Office">Office</option>
                   <option value="Website">Website</option>

@@ -23,7 +23,7 @@ const Sidebar = () => {
       }  pl-1 bg-white  border-r border-border-stroke `}
     >
       <div className="relative flex gap-4 items-center">
-        <div className="absolute top-10 -right-4 bg-gray rounded-full shadow-2xl  flex items-center justify-center cursor-pointer">
+        <div className="absolute top-10 -right-4 bg-gray-300 rounded-full shadow-2xl  flex items-center justify-center cursor-pointer">
           <button onClick={handleTogglesidebar}>
             {isExpanded ? (
               <UilAngleLeftB className="text-white" size="28" />
@@ -37,7 +37,7 @@ const Sidebar = () => {
       <p
         className={`${
           isExpanded ? 'ml-5' : 'ml-0'
-        } text-gray-light leading-3 text-sm font-semibold p-1`}
+        } text-gray-400 leading-3 text-sm font-semibold p-1`}
       >
         Main
       </p>
@@ -48,7 +48,7 @@ const Sidebar = () => {
             data-tooltip-content={item.heading}
             data-for={`tooltip-${item.heading}`}
             data-place="right"
-            className="flex mx items-center cursor-pointer text-gray leading-4 text-base font-normal p-4  ease-in-out hover:text-text-purple hover:bg-bg-menu"
+            className="flex mx items-center cursor-pointer text-gray-500 leading-4 text-base font-normal p-4  ease-in-out hover:text-text-purple hover:bg-bg-menu"
           >
             <item.icon
               className={` ${isExpanded ? 'w-6 h-6 mx-3' : 'w-6 h-6 mx-1'} `}
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 isExpanded
                   ? 'flex  opacity-100 transition-transform delay-1000'
                   : 'hidden opacity-0'
-              }  font-semibold `}
+              }  font-sans font-semibold `}
             >
               {item.heading}
             </span>
@@ -74,9 +74,8 @@ const Sidebar = () => {
 
       {/* palavi projects menu */}
       <p
-        className={`${
-          isExpanded ? 'ml-5' : 'ml-0'
-        } text-gray-light leading-3 text-sm font-semibold p-1`}
+        className={`${isExpanded ? 'ml-5' : 'ml-0'} text-gray-400
+        -light leading-3 text-sm font-semibold `}
       >
         Projects
       </p>
@@ -86,15 +85,15 @@ const Sidebar = () => {
           <Link to={item.path} key={index}>
             <div
               key={index}
-              className="flex mx  items-center cursor-pointer text-gray leading-4	text-base font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
+              className="flex mx  items-center cursor-pointer text-gray-500 leading-4	text-base font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu"
             >
               <item.icon
                 className={` ${isExpanded ? 'w-25 h-25 mx-3' : 'w-6 h-6 mx-1'}`}
               />
               <span
-                className={`text-base ${
+                className={`text-sm ${
                   isExpanded ? 'flex' : 'hidden'
-                } font-sans font-semibold `}
+                } font-sans font-semibold  `}
               >
                 {item.heading}
               </span>
@@ -107,7 +106,7 @@ const Sidebar = () => {
       {SidebarFooter.map((item, index) => {
         return (
           <Link to={item.path} key={index}>
-            <div className="flex mx  items-center cursor-pointer text-gray leading-4	text-sm font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu">
+            <div className="flex mx  items-center cursor-pointer text-gray-500 leading-4	text-sm font-normal p-4 ease-in-out hover:text-text-purple hover:bg-bg-menu">
               <item.icon
                 className={` ${isExpanded ? 'w-25 h-25 mx-3' : 'w-6 h-6 mx-1'}`}
               />
