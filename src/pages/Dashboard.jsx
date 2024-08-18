@@ -6,22 +6,14 @@ import Cutegirl from '../images/Cutegirl.png';
 import cartoon from '../images/cartoon.png';
 import VisitorsBars from '../components/VisitorsBars';
 import FinancialInsights from '../components/FinancialInsights';
-import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
 
 const Dashboard = () => {
   const [showModal, setshowmodal] = useState(false);
 
   const closeModal = () => setshowmodal(false);
 
-  const { login, register } = useKindeAuth();
   return (
     <div className="">
-      <button onClick={register} type="button">
-        Register
-      </button>
-      <button onClick={login} type="button">
-        Log In
-      </button>
       <div className=" my-8 w-full border border-border-stroke rounded-lg p-5 bg-white lg:flex justify-between items-center">
         <div className="flex justify-center items-center gap-5">
           <div>

@@ -53,7 +53,7 @@ const NewleadForm = ({ closeModal }) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:3000/leads', formData);
+      await axios.post('http://localhost:3000/api/leads/create', formData);
       toast.success('Lead submitted successfully!');
       closeModal();
 

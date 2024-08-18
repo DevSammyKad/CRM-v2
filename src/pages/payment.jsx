@@ -40,12 +40,11 @@ const Payment = () => {
     setIsOpenMore(true);
   };
 
+  const baseUrl = import.meta.env.VITE_BASEURL;
   useEffect(() => {
     const fetchAllReceiptData = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:3000/api/receipts/get/'
-        );
+        const response = await axios.get(`${baseUrl}/api/receipts/get/`);
         setReceiptsData(response.data.receipts);
       } catch (error) {
         console.error('Error While fetching Receipts ', error);

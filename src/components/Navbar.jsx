@@ -35,10 +35,10 @@ const Navbar = () => {
   }, []);
   useEffect(() => {
     if (!isOnline) {
-      toast.loading('Please check your Network');
+      // toast.loading('Please check your Network');
     } else {
-      toast.dismiss();
-      toast.success(`Network is Available now`);
+      // toast.dismiss();
+      // toast.success(`Network is Available now`);
     }
   }, [isOnline]);
 

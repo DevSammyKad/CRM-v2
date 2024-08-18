@@ -4,6 +4,7 @@ import MUIDataTable from 'mui-datatables';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import toast, { Toaster } from 'react-hot-toast';
 import EmtyState from '../components/EmtyState';
+import axios from 'axios';
 
 const Leads = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,21 +17,24 @@ const Leads = () => {
 
   // * CODE For Data Tables    ////
 
-  const loadLeads = async () => {
-    try {
-      const res = await fetch('http://localhost:3000/leads');
-      const data = await res.json();
-      setUsers(data);
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-      setError(err);
-    }
-    setLoading(false);
-  };
+  // const baseUrl = process.env.REACT_APP_BASEURL;
+  const baseUrl = import.meta.env.VITE_BASEURL;
+  console.log(baseUrl);
 
   useEffect(() => {
-    loadLeads();
+    const fetchLeads = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/api/leads/get/`);
+        console.log(response.data);
+        setUsers(response.data.leads);
+      } catch (error) {
+        console.error('Error fetching leads:', error);
+        // setError('Error fetching leads data');
+        // setLoading(false);
+      }
+    };
+
+    fetchLeads();
   }, []);
 
   const columns = [
@@ -46,26 +50,27 @@ const Leads = () => {
   ];
 
   const deleteLead = async (leadId) => {
+    console.log(leadId);
     try {
-      const response = await fetch(`http://localhost:3000/leads/${leadId}`, {
-        method: 'DELETE',
-      });
+      const response = await axios.delete(
+        `${baseUrl}/api/leads/delete/${leadId}`
+      );
 
-      if (!response.ok) {
+      // Check if the status code indicates success (2xx)
+      if (response.status >= 200 && response.status < 300) {
+        // Remove the deleted lead from the state
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user._id !== leadId)
+        );
+        toast.success('Lead deleted successfully');
+      } else {
         throw new Error(`Error deleting lead: ${response.statusText}`);
       }
-
-      // Remove the deleted lead from the state (assuming users holds leads data)
-      setUsers(users.filter((user) => user._id !== leadId));
-      console.log('Lead deleted successfully');
-      toast.success('Lead deleted successfully');
-      loadLeads(); // Assuming this fetches updated leads
     } catch (error) {
       console.error('Error deleting lead:', error);
       toast.error('Lead deletion failed. Please try again.');
     }
   };
-
   const options = {
     elevation: 1,
     rowsPerPage: 10,
@@ -78,6 +83,7 @@ const Leads = () => {
       filename: 'Leads.csv',
       separator: ',',
     },
+    responsive: 'vertical',
     rowsPerPageOptions: [5, 10, 20, 30],
 
     selection: true,
@@ -87,20 +93,20 @@ const Leads = () => {
     ),
 
     onRowsDelete: async (rowsDeleted) => {
-      {
-        const { data } = rowsDeleted;
-        const selectedRow = data[0]; // Get the first element (only selected row)
-        const leadId = selectedRow.dataIndex; // Access the lead ID from dataIndex
+      const leadIdsToDelete = rowsDeleted.data.map(
+        (row) => users[row.dataIndex]._id
+      );
 
-        // Now you can use leadId to delete the lead using your deleteLead function
-        deleteLead(leadId); //selected rows after deletion
+      // Delete each lead based on the collected lead IDs
+      for (let i = 0; i < leadIdsToDelete.length; i++) {
+        await deleteLead(leadIdsToDelete[i]);
       }
     },
   };
 
   const tableStyle = {
     borderRadius: '15px',
-    overflow: 'hidden',
+    overflow: '',
   };
 
   const genderStyle = (value) => {
@@ -178,64 +184,64 @@ const Leads = () => {
       },
     });
 
-  if (loading)
-    return (
-      <div>
-        <div className="flex justify-center animate-pulse ">
-          {loading && <EmtyState id="loading" />}
+  // if (loading)
+  //   return (
+  //     <div>
+  //       <div className="flex justify-center animate-pulse ">
+  //         {loading && <EmtyState id="loading" />}
+  //       </div>
+  //     </div>
+  //   );
+  // if (error)
+  //   return (
+  //     <div className="flex justify-center ">
+  //       {error && <EmtyState id="error" />}
+  //     </div>
+  //   );
+  // else {
+  return (
+    <div>
+      <div className="flex justify-between items-center my-8 bg-white py-8 px-5 rounded-lg border border-border-stroke shadow-sm ">
+        <div>Leads </div>
+        <div className="flex gap-4">
+          <button
+            className="bg-indigo-500 text-sm font-semibold  text-white py-3 px-4 rounded-lg"
+            onClick={() => setShowModal(true)}
+          >
+            Add New Lead
+          </button>
+          <button className="bg-blue-500 text-sm font-semibold  text-white py-3 px-4 rounded-lg">
+            Import Lead
+          </button>
         </div>
       </div>
-    );
-  if (error)
-    return (
-      <div className="flex justify-center ">
-        {error && <EmtyState id="error" />}
-      </div>
-    );
-  else {
-    return (
-      <div>
-        <div className="flex justify-between items-center my-8 bg-white py-8 px-5 rounded-lg border border-border-stroke shadow-sm ">
-          <div>Leads </div>
-          <div className="flex gap-4">
-            <button
-              className="bg-indigo-500 text-sm font-semibold  text-white py-3 px-4 rounded-lg"
-              onClick={() => setShowModal(true)}
-            >
-              Add New Lead
-            </button>
-            <button className="bg-blue-500 text-sm font-semibold  text-white py-3 px-4 rounded-lg">
-              Import Lead
-            </button>
-          </div>
+      {showModal && <NewleadForm closeModal={closeModal} />}
+      <ThemeProvider theme={getMuiTheme()}>
+        <div style={tableStyle}>
+          <MUIDataTable
+            title={`All Leads : ${users?.length}`}
+            data={users}
+            options={options}
+            columns={columns.map((column) => ({
+              ...column,
+              options: column.options
+                ? { ...column.options, ...options }
+                : options,
+            }))}
+            actions={[
+              {
+                icon: 'delete',
+                tooltip: 'Delete Lead',
+                onclick: () => deleteLead(),
+              },
+            ]}
+          />
         </div>
-        {showModal && <NewleadForm closeModal={closeModal} />}
-        <ThemeProvider theme={getMuiTheme()}>
-          <div style={tableStyle}>
-            <MUIDataTable
-              title={`All Leads : ${users?.length}`}
-              data={users}
-              options={options}
-              columns={columns.map((column) => ({
-                ...column,
-                options: column.options
-                  ? { ...column.options, ...options }
-                  : options,
-              }))}
-              actions={[
-                {
-                  icon: 'delete',
-                  tooltip: 'Delete Lead',
-                  onclick: () => deleteLead(),
-                },
-              ]}
-            />
-          </div>
-        </ThemeProvider>
-        <Toaster />
-      </div>
-    );
-  }
+      </ThemeProvider>
+      <Toaster />
+    </div>
+  );
 };
+// };
 
 export default Leads;
