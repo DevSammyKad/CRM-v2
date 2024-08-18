@@ -3,7 +3,7 @@ import Receipt from '../components/Receipt';
 import * as XLSX from 'xlsx';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDebounce } from 'use-debounce';
-import PaymentData from '../Data/PaymentData.json';
+// import PaymentData from '../Data/PaymentData.json';
 import InvoiceCountTabs from '../components/InvoiceCountTabs';
 import paymentIMG from '../icons/paymentIMG.png';
 import SvgMore from '../icons/More';
@@ -41,6 +41,7 @@ const Payment = () => {
   };
 
   const baseUrl = import.meta.env.VITE_BASEURL;
+
   useEffect(() => {
     const fetchAllReceiptData = async () => {
       try {
@@ -62,7 +63,7 @@ const Payment = () => {
   const handleDeleteReceipt = async (receiptId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/receipts/delete/${receiptId}`
+        `${baseUrl}/api/receipts/delete/${receiptId}`
       );
 
       if (response.status === 200) {
@@ -154,9 +155,9 @@ const Payment = () => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M17 8l4 4m0 0l-4 4m4-4H3"
                     />
                   </svg>

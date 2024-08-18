@@ -5,6 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import SvgCloseCircle from '../icons/CloseCircle';
 
 const NewClientForm = ({ closeModal }) => {
+  const baseUrl = import.meta.env.VITE_BASEURL;
+
   const [formData, setFormData] = useState({
     first_name: '',
     middle_name: '',
@@ -67,10 +69,7 @@ const NewClientForm = ({ closeModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'http://localhost:3000/add-client',
-        formData
-      );
+      const response = await axios.post(`${baseUrl}/api/add-client`, formData);
       toast.success('Form submitted successfully!');
       closeModal();
 
